@@ -16,13 +16,12 @@ function [levels, centrality_dynamic, coverage_history] = hierarchicalSelection(
     end  
    
     %% Core Parameter Settings (Adjustable as needed)  
-    params.alpha = 1;        % VOI weight  
-    params.beta = 0;         % Centrality weight  
+    params.alpha = 0.5;        % VOI weight  
     params.dist_threshold = 7000; % Spatial adjacency threshold (meters)  
     params.converge_thres = 0.003; % Incremental convergence threshold (0.3%)  
     params.max_levels = 10;     % Maximum allowed levels  
     params.min_level_points = 1;% Minimum points per level  
-    params.gain_threshold = 0.01; % Gain threshold (5%)  
+    params.gain_threshold = 0.05; % Gain threshold (5%)  
     params.redundancy_threshold = 0.1; % Information redundancy threshold  
     params.max_nodes_for_full_calc = 500; % Maximum nodes for full centrality calculation  
    
@@ -722,4 +721,5 @@ function saveResults(levels, coverage, VOI, centrality, efficiency, contribution
         flow_table = array2table(flow_intensity, 'RowNames', row_labels, 'VariableNames', col_labels);
         writetable(flow_table, 'Flow_Intensity.xlsx', 'WriteRowNames', true);
     end
+
 end
